@@ -19,15 +19,15 @@ export const LinkScreen = () => {
 			let json = todos.data.neon_notes;
 			if (json) {
 				setTheLinks(json);
-				setRefreshOnce(() => true);
 			}
-			setTimeout(() => {
-				if (!refreshedOnce) {
-					setRefreshOnce(true);
-				}
-			}, 100);
 		})();
 	}, [refresh]);
+
+	setTimeout(() => {
+		if (!theLinks.length) {
+			setRefreshOnce(true);
+		}
+	}, 1000);
 
 	const linkPressed = async (l: string) => {
 		//Linking.openURL

@@ -20,14 +20,7 @@ export const TodoScreen = () => {
 				let json = todos.data.neon_notes;
 				if (json) {
 					setTheTodos(json);
-					setRefreshOnce(() => true);
 				}
-
-				setTimeout(() => {
-					if (!refreshedOnce) {
-						setRefreshOnce(true);
-					}
-				}, 100);
 			})();
 		} catch (error) {}
 	}, [refresh]);
@@ -38,6 +31,11 @@ export const TodoScreen = () => {
     )
   })*/
 
+	setTimeout(() => {
+		if (!theTodos.length) {
+			setRefreshOnce(true);
+		}
+	}, 1000);
 	const copyToClip = async (value: string) => value && (await Clipboard.setStringAsync(value));
 
 	return (
