@@ -1,5 +1,5 @@
 import { TodoScreen, LinkScreen } from '../screens';
-import { RootTabParamList, RootTabScreenProps } from '../types';
+import { RootTabParamList } from '../types';
 import { FontAwesome } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Colors from '../constants/Colors';
@@ -32,9 +32,9 @@ export default function BottomTabNavigator() {
 			<BottomTab.Screen
 				name="Todo"
 				component={TodoScreen}
-				options={({ navigation }: RootTabScreenProps<'Todo'>) => ({
+				options={() => ({
 					title: 'Todo',
-					tabBarIcon: ({ color }) => <TabBarIcon name="check-square" color={'#6ee7b7'} />,
+					tabBarIcon: () => <TabBarIcon name="check-square" />,
 					tabBarLabel: 'Todo',
 				})}
 			/>
@@ -43,16 +43,13 @@ export default function BottomTabNavigator() {
 				component={LinkScreen}
 				options={{
 					title: 'Links',
-					tabBarIcon: ({ color }) => <TabBarIcon name="link" color={'#6ee7b7'} />,
+					tabBarIcon: () => <TabBarIcon name="link" />,
 				}}
 			/>
 		</BottomTab.Navigator>
 	);
 }
 
-function TabBarIcon(props: {
-	name: React.ComponentProps<typeof FontAwesome>['name'];
-	color: string;
-}) {
-	return <FontAwesome size={30} style={{ marginBottom: -3 }} {...props} />;
+function TabBarIcon(props: { name: React.ComponentProps<typeof FontAwesome>['name'] }) {
+	return <FontAwesome size={22} className="text-brand-green" color={'#6ee7b7'} {...props} />;
 }
