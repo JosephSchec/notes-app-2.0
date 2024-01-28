@@ -1,5 +1,5 @@
 import React, { Dispatch, ReactNode, SetStateAction, useRef, useState } from 'react';
-import { DrawerLayoutAndroid, Text, StyleSheet, View, Pressable, TextInput } from 'react-native';
+import { DrawerLayoutAndroid, View, Pressable, TextInput } from 'react-native';
 import Icon from 'react-native-vector-icons/AntDesign';
 import addNote from '../Helper/addNote';
 interface Props {
@@ -7,12 +7,12 @@ interface Props {
 	children: ReactNode;
 	updateList: Dispatch<SetStateAction<any[]>>;
 }
-export default function Drawer({ children, theRoute, updateList }: Props) {
+export const Drawer = ({ children, theRoute, updateList }: Props) => {
 	const drawer = useRef<any>(null);
 	const [val, setval] = useState<string>('');
 	const navigationView = () => (
-		<View style={[styles.container, styles.navigationContainer]}>
-			<View style={styles.paragraph}>
+		<View className="flex-1 items-center  rounded-lg border-transparent bg-brand-light p-2">
+			<View className="h-3/4 w-full rounded-md bg-white p-2">
 				<TextInput
 					multiline={true}
 					numberOfLines={10}
@@ -23,25 +23,17 @@ export default function Drawer({ children, theRoute, updateList }: Props) {
 					textAlign="left"
 					placeholder={`in ${theRoute}`}
 					value={val}
-					style={{
-						flex: 1,
-						alignItems: 'flex-start',
-						justifyContent: 'flex-start',
-						textAlign: 'left',
-						textAlignVertical: 'top',
-					}}
+					className="h-full flex-1 content-start items-start justify-start align-top"
 				/>
 			</View>
 			<Pressable
-				style={styles.theButton}
+				className="mt-8"
 				onPress={() => {
-					addNote({ noteVal: val, page: theRoute, updateList: updateList });
+					addNote({ noteVal: val, page: theRoute, updateList });
 					drawer.current.closeDrawer();
 				}}
 			>
-				<Text style={styles.buttonText}>
-					<Icon name="pluscircleo" size={50} color="#34d399" />
-				</Text>
+				<Icon name="pluscircleo" size={50} color="#34d399" />
 			</Pressable>
 		</View>
 	);
@@ -58,32 +50,4 @@ export default function Drawer({ children, theRoute, updateList }: Props) {
 			{children}
 		</DrawerLayoutAndroid>
 	);
-}
-
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		alignItems: 'center',
-		justifyContent: 'center',
-		padding: 10,
-	},
-	navigationContainer: {
-		borderRadius: 10,
-		borderColor: 'transparent',
-		backgroundColor: '#475569b3',
-	},
-	paragraph: {
-		padding: 11,
-		fontSize: 15,
-		width: '100%',
-		height: '70%',
-		borderRadius: 10,
-		backgroundColor: 'white',
-	},
-	theButton: {
-		marginTop: 22,
-	},
-	buttonText: {
-		fontWeight: 'bold',
-	},
-});
+};
