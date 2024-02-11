@@ -14,28 +14,25 @@ export const TodoScreen = () => {
 	const [refreshedOnce, setRefreshOnce] = useState<boolean>(false);
 
 	useEffect(() => {
-		try {
-			(async () => {
-				let todos = await getTodoNotes();
-				let json = todos.data.neon_notes;
-				if (json) {
-					setTheTodos(json);
-				}
-			})();
-		} catch (error) {}
-	}, [refresh]);
-
-	/*let eachOne = theTodos.map(td => {
-    return (
-      <Animated.Text key={td.id} style={styles.todo} entering={LightSpeedInLeft}>{td.note.toString()}</Animated.Text>
-    )
-  })*/
-
-	setTimeout(() => {
-		if (!theTodos.length) {
+		if (!theTodos.length && !refreshedOnce && !refresh) {
 			setRefreshOnce(true);
 		}
-	}, 1000);
+
+		(async () => {
+			let todos = await getTodoNotes();
+			let json = todos.data.neon_notes;
+			if (json) {
+				setTheTodos(json);
+			}
+		})();
+	}, [refresh, refreshedOnce]);
+
+	/*let eachOne = theTodos.map(td => {
+	return (
+	  <Animated.Text key={td.id} style={styles.todo} entering={LightSpeedInLeft}>{td.note.toString()}</Animated.Text>
+	)
+  })*/
+
 	const copyToClip = async (value: string) => value && (await Clipboard.setStringAsync(value));
 
 	return (
@@ -52,12 +49,12 @@ export const TodoScreen = () => {
 									 flex-1 rounded bg-brand-light px-4 py-2 text-lg
 									  font-semibold text-brand-green"
 									onPress={() => copyToClip(data.item.note)}
-									entering={!refreshedOnce && !refresh ? LightSpeedInLeft : noAnimation}
+									entering={!refreshedOnce ? LightSpeedInLeft : noAnimation}
 								>
 									{data.item.note}
 								</Animated.Text>
 							)}
-							renderHiddenItem={(data, rowMap) => (
+							renderHiddenItem={(data, _rowMap) => (
 								<View className="mb-4 ml-1 h-4 w-full flex-1 justify-center bg-transparent pr-2">
 									<Animated.Text
 										className="text-right"

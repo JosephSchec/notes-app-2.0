@@ -14,6 +14,9 @@ export const LinkScreen = () => {
 	const [refreshedOnce, setRefreshOnce] = useState<boolean>(false);
 
 	useEffect(() => {
+		if (!theLinks.length && !refreshedOnce && !refresh) {
+			setRefreshOnce(true);
+		}
 		(async () => {
 			let todos = await getLinks();
 			let json = todos.data.neon_notes;
@@ -21,13 +24,7 @@ export const LinkScreen = () => {
 				setTheLinks(json);
 			}
 		})();
-	}, [refresh]);
-
-	setTimeout(() => {
-		if (!theLinks.length) {
-			setRefreshOnce(true);
-		}
-	}, 1000);
+	}, [refresh, refreshedOnce]);
 
 	const linkPressed = async (l: string) => {
 		//Linking.openURL
@@ -69,7 +66,7 @@ export const LinkScreen = () => {
 											let newLinks = theLinks.filter((t) => t.note !== data.item.note);
 											setTheLinks(newLinks);
 										}}
-										entering={!refreshedOnce && !refresh ? animateOpacity : noAnimation}
+										entering={!refreshedOnce ? animateOpacity : noAnimation}
 									>
 										<FontAwesome name="trash" size={22} color="red" />
 									</Animated.Text>

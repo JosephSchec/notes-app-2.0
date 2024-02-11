@@ -6,6 +6,10 @@ import Colors from '../constants/Colors';
 import { useColorScheme } from '../hooks';
 const BottomTab = createBottomTabNavigator<RootTabParamList>();
 
+const TabBarIcon = (props: { name: React.ComponentProps<typeof FontAwesome>['name'] }) => {
+	return <FontAwesome size={22} className="text-brand-green" color={'#6ee7b7'} {...props} />;
+};
+
 export default function BottomTabNavigator() {
 	const colorScheme = useColorScheme();
 	return (
@@ -48,8 +52,4 @@ export default function BottomTabNavigator() {
 			/>
 		</BottomTab.Navigator>
 	);
-}
-
-function TabBarIcon(props: { name: React.ComponentProps<typeof FontAwesome>['name'] }) {
-	return <FontAwesome size={22} className="text-brand-green" color={'#6ee7b7'} {...props} />;
 }

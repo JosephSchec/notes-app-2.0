@@ -1,43 +1,42 @@
 {
-  "expo": {
-    "name": "notes-app",
-    "slug": "notes-app",
-    "version": "1.0.0",
-    "orientation": "portrait",
-    "icon": "./assets/images/splash.png",
-    "userInterfaceStyle": "automatic",
-    "scheme": "notes-app-2",
-    "splash": {
-      "image": "./assets/images/splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#0f172a"
-    },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
-    "ios": {
-      "supportsTablet": true
-    },
-    "android": {
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/images/splash.png",
-        "backgroundColor": "#0f172a"
-      },
-      "package": "com.shecky.notesapp"
-    },
-    "web": {
-      "favicon": "./assets/images/splash.png"
-    },
-    "extra": {
-      "eas": {
-        "projectId": "c07f17ff-f52f-48d7-b948-ce2743b50ad1"
-      }
-    },
-    "runtimeVersion": {
-      "policy": "appVersion"
-    },
-    "updates": {
-      "url": "https://u.expo.dev/c07f17ff-f52f-48d7-b948-ce2743b50ad1"
-    }
-  }
+	"expo": {
+		"name": "notes-app-2",
+		"slug": "notes-app-2",
+		"version": "1.0.1",
+		"orientation": "portrait",
+		"icon": "./assets/images/splash.png",
+		"userInterfaceStyle": "light",
+		"scheme": "notes-app-2",
+		"jsEngine": "hermes",
+		"splash": {
+			"image": "./assets/images/splash.png",
+			"resizeMode": "contain",
+			"backgroundColor": "#0f172a"
+		},
+		"assetBundlePatterns": ["**/*"],
+		"ios": {
+			"supportsTablet": true
+		},
+		"android": {
+			"adaptiveIcon": {
+				"foregroundImage": "./assets/images/splash.png",
+				"backgroundColor": "#0f172a"
+			},
+			"package": "com.shecky.notesapp2"
+		},
+		"web": {
+			"favicon": "./assets/images/splash.png"
+		},
+		"extra": {
+			"eas": {
+				"projectId": "4cdb16a9-135b-4484-9fe1-a02bc1eefb5c"
+			}
+		},
+		"runtimeVersion": {
+			"policy": "appVersion"
+		},
+		"updates": {
+			"url": "https://u.expo.dev/4cdb16a9-135b-4484-9fe1-a02bc1eefb5c"
+		}
+	}
 }

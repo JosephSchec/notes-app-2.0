@@ -3,7 +3,7 @@
 		"version": ">= 5.4.0"
 	},
 	"build": {
-		"preview": {
+		"developement": {
 			"distribution": "internal",
 			"android": {
 				"buildType": "apk"
@@ -11,7 +11,7 @@
 			"env": {
 				"EXPO_PUBLIC_HASURA_SECRET": "XXXXXXXXXXX REPLACE ME"
 			},
-			"channel": "preview"
+			"channel": "developement"
 		},
 		"production": {
 			"channel": "production"
